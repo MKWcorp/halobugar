@@ -1,5 +1,6 @@
-import { Header, Footer } from '@/components/layout'
-import { AuthProvider } from '@/components/providers'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
+import { AuthProvider } from '@/components/providers/auth-provider'
 
 export default function MainLayout({
   children,
@@ -8,9 +9,11 @@ export default function MainLayout({
 }) {
   return (
     <AuthProvider>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col h-screen overflow-hidden bg-gray-50 max-w-md mx-auto relative shadow-2xl">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-20 overflow-y-auto w-full">
+          {children}
+        </main>
         <Footer />
       </div>
     </AuthProvider>

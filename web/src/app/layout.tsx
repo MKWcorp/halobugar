@@ -1,27 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Halo Bugar - Home Recovery & Fisioterapi",
-  description: "Platform home recovery dan fisioterapi. Pesan fisioterapis profesional langsung ke rumah untuk pemulihan yang lebih nyaman.",
+  description: "Platform home recovery dan fisioterapi. Pesan fisioterapis profesional langsung ke rumah.",
   keywords: ["fisioterapi", "home recovery", "terapi", "pemulihan", "cedera olahraga"],
   authors: [{ name: "Halo Bugar" }],
-  openGraph: {
-    title: "Halo Bugar - Home Recovery untuk Hidup Aktif",
-    description: "Pesan fisioterapis profesional langsung ke rumah. Pulih lebih nyaman, bergerak lebih baik.",
-    type: "website",
-  },
 };
 
 export default function RootLayout({
@@ -31,10 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="id"
+      className={`${jakarta.variable} h-full antialiased font-jakarta scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full bg-slate-50 text-slate-900">
+        <div className="mx-auto min-h-screen max-w-md bg-white shadow-xl flex flex-col relative overflow-hidden">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
+

@@ -1,195 +1,90 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Activity, Calendar, MapPin, Star, Users, Zap } from "lucide-react";
-
-const services = [
-  {
-    icon: Activity,
-    title: "Home Recovery",
-    description: "Pemulihan pasca olahraga dan aktivitas fisik di rumah",
-  },
-  {
-    icon: Zap,
-    title: "Injury Support",
-    description: "Penanganan cedera ringan hingga sedang",
-  },
-  {
-    icon: Users,
-    title: "Pain Relief",
-    description: "Atasi nyeri otot, punggung, dan persendian",
-  },
-  {
-    icon: Star,
-    title: "Performance Recovery",
-    description: "Recovery untuk atlet dan pecinta olahraga",
-  },
-];
-
-const stats = [
-  { value: "50+", label: "Fisioterapis Terverifikasi" },
-  { value: "500+", label: "Sesi Selesai" },
-  { value: "4.8", label: "Rating Rata-rata" },
-  { value: "10+", label: "Area Layanan" },
-];
+import Link from 'next/link'
+import { Search, Activity, Heart, Zap, Stethoscope } from 'lucide-react'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-              <Activity className="w-6 h-6 text-white" />
+    <div className="flex flex-col h-screen overflow-hidden bg-gray-50 max-w-md mx-auto relative shadow-2xl">
+      <Header />
+      
+      <main className="flex-1 pb-20 overflow-y-auto w-full">
+        {/* Welcome Section */}
+        <section className="bg-white px-4 pt-6 pb-4 rounded-b-3xl shadow-sm border-b border-gray-100">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-gray-900">Halo, Budi! 👋</h1>
+            <p className="text-gray-500 mt-1">Mau pijat hari ini?</p>
+          </div>
+
+          {/* Quick Search */}
+          <div className="relative mb-2">
+            <div className="flex items-center bg-gray-100 rounded-2xl px-4 py-3">
+              <Search className="w-5 h-5 text-gray-400" />
+              <input 
+                type="text" 
+                placeholder="Cari layanan pijat & fisioterapi..." 
+                className="bg-transparent border-none outline-none ml-3 w-full text-sm text-gray-700 placeholder-gray-400 focus:ring-0"
+              />
             </div>
-            <span className="text-xl font-bold text-green-800">Halo Bugar</span>
           </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="#layanan" className="text-gray-600 hover:text-green-600">Layanan</Link>
-            <Link href="#cara-kerja" className="text-gray-600 hover:text-green-600">Cara Kerja</Link>
-            <Link href="/therapist" className="text-gray-600 hover:text-green-600">Untuk Terapis</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="outline">Masuk</Button>
-            </Link>
-            <Link href="/register">
-              <Button className="bg-green-600 hover:bg-green-700">Daftar</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+        </section>
 
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-green-50 to-white">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Home Recovery untuk
-            <span className="text-green-600"> Hidup Aktif</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-            Pesan fisioterapis profesional langsung ke rumah. Pulih lebih nyaman, bergerak lebih baik.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/booking">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-lg px-8">
-                <Calendar className="w-5 h-5 mr-2" />
-                Pesan Sekarang
-              </Button>
-            </Link>
-            <Link href="#layanan">
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                Lihat Layanan
-              </Button>
-            </Link>
+        {/* Quick Actions / Categories */}
+        <section className="px-4 py-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">Layanan Kami</h2>
+            <Link href="/services" className="text-sm font-medium text-emerald-600 hover:text-emerald-700">Lihat Semua</Link>
           </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-12 bg-green-600">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white">{stat.value}</div>
-                <div className="text-green-100">{stat.label}</div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <Link href="/services/home-recovery" className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center gap-2 h-28 hover:bg-emerald-50 active:scale-95 transition-all">
+              <div className="bg-emerald-100 p-3 rounded-full text-emerald-600">
+                <Heart className="w-6 h-6" />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <span className="text-sm font-semibold text-gray-800">Home Recovery</span>
+            </Link>
 
-      {/* Services */}
-      <section id="layanan" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Layanan Kami</h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Pilih layanan sesuai kebutuhanmu. Fisioterapis profesional kami siap membantu pemulihanmu di rumah.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-green-200">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <service.icon className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 text-sm">{service.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works */}
-      <section id="cara-kerja" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Cara Kerja</h2>
-          <p className="text-gray-600 text-center mb-12">
-            3 langkah mudah untuk mendapatkan layanan fisioterapi di rumah
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">1</div>
-              <h3 className="text-lg font-semibold mb-2">Pilih Layanan</h3>
-              <p className="text-gray-600">Pilih jenis layanan sesuai keluhan atau kebutuhanmu</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">2</div>
-              <h3 className="text-lg font-semibold mb-2">Atur Jadwal</h3>
-              <p className="text-gray-600">Pilih fisioterapis, tanggal, dan jam yang kamu inginkan</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">3</div>
-              <h3 className="text-lg font-semibold mb-2">Terapis Datang</h3>
-              <p className="text-gray-600">Fisioterapis datang ke rumah, nikmati sesi pemulihanmu</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-green-600">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Siap Pulih di Rumah?
-          </h2>
-          <p className="text-green-100 mb-8 max-w-xl mx-auto">
-            Pesan fisioterapis profesional sekarang dan rasakan kenyamanan treatment di rumah
-          </p>
-          <Link href="/booking">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              <MapPin className="w-5 h-5 mr-2" />
-              Pesan Home Recovery
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 border-t">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                <Activity className="w-4 h-4 text-white" />
+            <Link href="/services/injury-support" className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center gap-2 h-28 hover:bg-emerald-50 active:scale-95 transition-all">
+              <div className="bg-orange-100 p-3 rounded-full text-orange-600">
+                <Activity className="w-6 h-6" />
               </div>
-              <span className="font-bold text-green-800">Halo Bugar</span>
-            </div>
-            <p className="text-gray-600 text-sm">
-              © 2026 Halo Bugar. Kesehatan Anda, Prioritas Kami.
-            </p>
-            <div className="flex gap-4">
-              <Link href="/privacy" className="text-gray-600 hover:text-green-600 text-sm">Privasi</Link>
-              <Link href="/terms" className="text-gray-600 hover:text-green-600 text-sm">Syarat & Ketentuan</Link>
-            </div>
+              <span className="text-sm font-semibold text-gray-800">Cedera Olahraga</span>
+            </Link>
+
+            <Link href="/services/pain-relief" className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center gap-2 h-28 hover:bg-emerald-50 active:scale-95 transition-all">
+              <div className="bg-blue-100 p-3 rounded-full text-blue-600">
+                <Stethoscope className="w-6 h-6" />
+              </div>
+              <span className="text-sm font-semibold text-gray-800">Nyeri Kronis</span>
+            </Link>
+
+            <Link href="/services/performance" className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center gap-2 h-28 hover:bg-emerald-50 active:scale-95 transition-all">
+              <div className="bg-indigo-100 p-3 rounded-full text-indigo-600">
+                <Zap className="w-6 h-6" />
+              </div>
+              <span className="text-sm font-semibold text-gray-800">Performa Atlet</span>
+            </Link>
           </div>
-        </div>
-      </footer>
+        </section>
+
+        {/* Promo Card */}
+        <section className="px-4 pb-6 mt-2">
+           <div className="bg-emerald-600 rounded-3xl p-5 text-white shadow-md relative overflow-hidden">
+             <div className="relative z-10 w-2/3">
+               <h3 className="font-bold text-lg mb-1">Booking Cepat!</h3>
+               <p className="text-emerald-50 text-sm mb-4">Dapatkan terapis ke rumah dalam 60 menit.</p>
+               <button className="bg-white text-emerald-600 text-sm font-semibold py-2 px-4 rounded-full active:scale-95 transition-transform shadow-sm">
+                 Pesan Sekarang
+               </button>
+             </div>
+             <div className="absolute -right-4 -bottom-4 opacity-20">
+               <Activity className="w-32 h-32" />
+             </div>
+           </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
-  );
+  )
 }
-

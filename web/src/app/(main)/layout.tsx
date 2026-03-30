@@ -9,7 +9,7 @@ export default function MainLayout({
 }) {
   return (
     <AuthProvider>
-      <div className="flex flex-col h-screen overflow-hidden bg-gray-50 max-w-md mx-auto relative shadow-2xl">
+      <div className="flex flex-col h-screen overflow-hidden bg-gray-50 w-full relative">
         <Header />
         <main className="flex-1 pb-20 overflow-y-auto w-full">
           {children}

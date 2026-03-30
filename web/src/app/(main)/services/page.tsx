@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Activity, Bone, HeartPulse, Zap, Clock, ArrowRight } from 'lucide-react'
+import { Activity, Bone, HeartPulse, Zap, Clock } from 'lucide-react'
 import { ServiceCategory } from '@/types'
 
 interface DatabaseService {
@@ -21,30 +21,35 @@ const categoryInfo: Record<ServiceCategory, {
   description: string
   icon: React.ReactNode
   color: string
+  bgColor: string
 }> = {
   home_recovery: {
     name: 'Home Recovery',
-    description: 'Pemulihan pasca operasi, stroke, dan patah tulang',
-    icon: <HeartPulse className="h-6 w-6" />,
-    color: 'bg-rose-100 text-rose-600',
+    description: 'Pemulihan pasca operasi',
+    icon: <HeartPulse className="h-5 w-5" />,
+    color: 'text-rose-600',
+    bgColor: 'bg-rose-100',
   },
   injury_support: {
     name: 'Cedera & Injury',
-    description: 'Penanganan cedera olahraga dan keseleo',
-    icon: <Bone className="h-6 w-6" />,
-    color: 'bg-orange-100 text-orange-600',
+    description: 'Penanganan cedera olahraga',
+    icon: <Bone className="h-5 w-5" />,
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-100',
   },
   pain_relief: {
     name: 'Nyeri Kronis',
-    description: 'Terapi untuk nyeri punggung, leher, dan sendi',
-    icon: <Activity className="h-6 w-6" />,
-    color: 'bg-blue-100 text-blue-600',
+    description: 'Terapi nyeri punggung & sendi',
+    icon: <Activity className="h-5 w-5" />,
+    color: 'text-blue-600',
+    bgColor: 'bg-blue-100',
   },
   performance_recovery: {
-    name: 'Performance Recovery',
-    description: 'Program recovery untuk atlet dan pekerja',
-    icon: <Zap className="h-6 w-6" />,
-    color: 'bg-emerald-100 text-emerald-600',
+    name: 'Performance',
+    description: 'Recovery untuk atlet',
+    icon: <Zap className="h-5 w-5" />,
+    color: 'text-emerald-600',
+    bgColor: 'bg-emerald-100',
   },
 }
 
@@ -53,6 +58,7 @@ function formatPrice(price: number) {
     style: 'currency',
     currency: 'IDR',
     minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(price)
 }
 
@@ -96,62 +102,55 @@ export default async function ServicesPage({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold mb-4">Layanan Fisioterapi</h1>
-          <p className="text-lg text-emerald-100 max-w-2xl">
-            Pilih layanan yang sesuai dengan kebutuhan Anda. Semua terapi dilakukan oleh 
-            fisioterapis profesional bersertifikat langsung di rumah Anda.
-          </p>
-        </div>
+      {/* Mobile Header */}
+      <div className="bg-white px-4 pt-3 pb-3 border-b">
+        <h1 className="text-xl font-bold text-gray-900">Layanan Terapi</h1>
+        <p className="text-sm text-gray-500 mt-1">Pilih layanan sesuai kebutuhan</p>
       </div>
 
-      {/* Category Filter */}
-      <div className="bg-white border-b sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto py-4 gap-2 scrollbar-hide">
-            <Link href="/services">
+      {/* Category Filter - Horizontal Scroll */}
+      <div className="bg-white border-b sticky top-14 z-40 pb-safe">
+        <div className="flex overflow-x-auto px-4 py-3 gap-2 scrollbar-hide">
+          <Link href="/services">
+            <Button
+              variant={!activeCategory ? 'default' : 'outline'}
+              size="sm"
+              className={`whitespace-nowrap ${!activeCategory ? 'bg-emerald-600 hover:bg-emerald-700' : ''}`}
+            >
+              Semua
+            </Button>
+          </Link>
+          {categories.map((cat) => (
+            <Link key={cat} href={`/services?category=${cat}`}>
               <Button
-                variant={!activeCategory ? 'default' : 'outline'}
+                variant={activeCategory === cat ? 'default' : 'outline'}
                 size="sm"
-                className={!activeCategory ? 'bg-emerald-600 hover:bg-emerald-700' : ''}
+                className={`whitespace-nowrap ${activeCategory === cat ? 'bg-emerald-600 hover:bg-emerald-700' : ''}`}
               >
-                Semua
+                {categoryInfo[cat].name}
               </Button>
             </Link>
-            {categories.map((cat) => (
-              <Link key={cat} href={`/services?category=${cat}`}>
-                <Button
-                  variant={activeCategory === cat ? 'default' : 'outline'}
-                  size="sm"
-                  className={activeCategory === cat ? 'bg-emerald-600 hover:bg-emerald-700' : ''}
-                >
-                  {categoryInfo[cat].name}
-                </Button>
-              </Link>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Services List */}
+      <div className="px-4 py-4">
         {activeCategory ? (
           // Single category view
           <div>
-            <div className="flex items-center space-x-3 mb-8">
-              <div className={`p-3 rounded-xl ${categoryInfo[activeCategory].color}`}>
+            <div className="flex items-center space-x-3 mb-4">
+              <div className={`p-2 rounded-xl ${categoryInfo[activeCategory].bgColor} ${categoryInfo[activeCategory].color}`}>
                 {categoryInfo[activeCategory].icon}
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-lg font-bold text-gray-900">
                   {categoryInfo[activeCategory].name}
                 </h2>
-                <p className="text-gray-600">{categoryInfo[activeCategory].description}</p>
+                <p className="text-xs text-gray-500">{categoryInfo[activeCategory].description}</p>
               </div>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="space-y-3">
               {groupedServices[activeCategory]?.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))}
@@ -159,25 +158,25 @@ export default async function ServicesPage({
           </div>
         ) : (
           // All categories view
-          <div className="space-y-12">
+          <div className="space-y-6">
             {categories.map((category) => (
               groupedServices[category]?.length > 0 && (
                 <div key={category}>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-3">
-                      <div className={`p-2 rounded-lg ${categoryInfo[category].color}`}>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-2">
+                      <div className={`p-2 rounded-lg ${categoryInfo[category].bgColor} ${categoryInfo[category].color}`}>
                         {categoryInfo[category].icon}
                       </div>
-                      <h2 className="text-xl font-bold text-gray-900">
+                      <h2 className="text-base font-bold text-gray-900">
                         {categoryInfo[category].name}
                       </h2>
                     </div>
-                    <Link href={`/services?category=${category}`} className="text-emerald-600 hover:underline text-sm font-medium flex items-center">
-                      Lihat semua <ArrowRight className="ml-1 h-4 w-4" />
+                    <Link href={`/services?category=${category}`} className="text-emerald-600 text-xs font-medium">
+                      Lihat
                     </Link>
                   </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {groupedServices[category]?.slice(0, 3).map((service) => (
+                  <div className="space-y-3">
+                    {groupedServices[category]?.slice(0, 2).map((service) => (
                       <ServiceCard key={service.id} service={service} />
                     ))}
                   </div>
@@ -189,24 +188,9 @@ export default async function ServicesPage({
 
         {(!services || services.length === 0) && (
           <div className="text-center py-12">
-            <p className="text-gray-500">Belum ada layanan yang tersedia.</p>
+            <p className="text-gray-500 text-sm">Belum ada layanan tersedia</p>
           </div>
         )}
-      </div>
-
-      {/* CTA */}
-      <div className="bg-emerald-600 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Siap Memulai Pemulihan?</h2>
-          <p className="text-emerald-100 mb-6 max-w-xl mx-auto">
-            Pilih layanan dan jadwalkan sesi pertama Anda. Fisioterapis profesional kami siap membantu.
-          </p>
-          <Link href="/therapists">
-            <Button size="lg" variant="secondary" className="bg-white text-emerald-600 hover:bg-gray-100">
-              Cari Fisioterapis
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   )
@@ -220,26 +204,30 @@ function ServiceCard({ service }: { service: {
   base_price: number
 }}) {
   return (
-    <Card className="hover:shadow-lg transition-shadow">
-      <CardHeader>
-        <CardTitle className="text-lg">{service.name}</CardTitle>
-        <CardDescription>{service.description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center text-gray-500 text-sm">
-            <Clock className="h-4 w-4 mr-1" />
-            {service.duration_minutes} menit
+    <Card className="hover:shadow-md transition-shadow active:scale-[0.98]">
+      <CardContent className="p-4">
+        <div className="flex items-start justify-between mb-2">
+          <div className="flex-1 pr-2">
+            <h3 className="font-semibold text-gray-900 text-sm mb-1">{service.name}</h3>
+            <p className="text-xs text-gray-500 line-clamp-2">{service.description}</p>
           </div>
-          <div className="text-lg font-bold text-emerald-600">
-            {formatPrice(service.base_price)}
+          <div className="text-right flex-shrink-0">
+            <div className="text-base font-bold text-emerald-600">
+              {formatPrice(service.base_price)}
+            </div>
           </div>
         </div>
-        <Link href={`/booking?service=${service.id}`}>
-          <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
-            Pesan Sekarang
-          </Button>
-        </Link>
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center text-gray-500 text-xs">
+            <Clock className="h-3 w-3 mr-1" />
+            {service.duration_minutes} menit
+          </div>
+          <Link href={`/booking?service=${service.id}`}>
+            <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8">
+              Pesan
+            </Button>
+          </Link>
+        </div>
       </CardContent>
     </Card>
   )

@@ -43,177 +43,177 @@ export default async function DashboardPage() {
   const completedCount = bookings?.filter(b => b.status === 'completed').length || 0
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Welcome */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">
+    <div className="min-h-screen bg-gray-50 w-full">
+      {/* Header */}
+      <div className="bg-white border-b">
+        <div className="px-4 py-3">
+          <h1 className="text-lg font-bold text-gray-900">
             Halo, {profile?.name?.split(' ')[0] || 'User'}! 👋
           </h1>
-          <p className="text-gray-600">Selamat datang kembali di Halo Bugar</p>
+          <p className="text-xs text-gray-500">Selamat datang kembali</p>
         </div>
+      </div>
 
+      <div className="px-4 py-4">
         {/* Quick Actions */}
-        <div className="grid md:grid-cols-3 gap-4 mb-8">
+        <div className="space-y-2 mb-4">
           <Link href="/services">
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-6 flex items-center space-x-4">
-                <div className="p-3 rounded-xl bg-emerald-100">
-                  <Plus className="h-6 w-6 text-emerald-600" />
+            <Card className="hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
+              <CardContent className="p-3 flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-emerald-100 flex-shrink-0">
+                  <Plus className="h-4 w-4 text-emerald-600" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Buat Booking Baru</h3>
-                  <p className="text-sm text-gray-500">Jadwalkan sesi terapi</p>
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-gray-900">Buat Booking Baru</h3>
+                  <p className="text-xs text-gray-500">Jadwalkan sesi terapi</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
           
           <Link href="/dashboard/bookings">
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-6 flex items-center space-x-4">
-                <div className="p-3 rounded-xl bg-blue-100">
-                  <Calendar className="h-6 w-6 text-blue-600" />
+            <Card className="hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
+              <CardContent className="p-3 flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-blue-100 flex-shrink-0">
+                  <Calendar className="h-4 w-4 text-blue-600" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Riwayat Booking</h3>
-                  <p className="text-sm text-gray-500">Lihat semua booking</p>
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-gray-900">Riwayat Booking</h3>
+                  <p className="text-xs text-gray-500">Lihat semua booking</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
           
           <Link href="/dashboard/profile">
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-6 flex items-center space-x-4">
-                <div className="p-3 rounded-xl bg-purple-100">
-                  <User className="h-6 w-6 text-purple-600" />
+            <Card className="hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
+              <CardContent className="p-3 flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-purple-100 flex-shrink-0">
+                  <User className="h-4 w-4 text-purple-600" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Profil Saya</h3>
-                  <p className="text-sm text-gray-500">Edit data diri</p>
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-gray-900">Profil Saya</h3>
+                  <p className="text-xs text-gray-500">Edit data diri</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Upcoming Bookings */}
-          <div className="lg:col-span-2">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          <Card>
+            <CardContent className="p-3">
+              <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle>Booking Mendatang</CardTitle>
-                  <CardDescription>Sesi terapi yang sudah dijadwalkan</CardDescription>
+                  <p className="text-xs text-gray-500">Total Sesi</p>
+                  <p className="text-xl font-bold text-gray-900 mt-0.5">{completedCount}</p>
                 </div>
-                <Link href="/dashboard/bookings">
-                  <Button variant="ghost" size="sm" className="text-emerald-600">
-                    Lihat Semua <ArrowRight className="ml-1 h-4 w-4" />
-                  </Button>
-                </Link>
-              </CardHeader>
-              <CardContent>
-                {upcomingBookings.length > 0 ? (
-                  <div className="space-y-4">
-                    {upcomingBookings.map((booking) => (
-                      <div
-                        key={booking.id}
-                        className="flex items-center justify-between p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
-                      >
-                        <div className="flex items-center space-x-4">
-                          <div className="p-2 rounded-lg bg-emerald-100">
-                            <Activity className="h-5 w-5 text-emerald-600" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-gray-900">
-                              {booking.service?.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              dengan {booking.therapist?.user?.name}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-medium text-gray-900">
-                            {new Date(booking.scheduled_at).toLocaleDateString('id-ID', {
-                              day: 'numeric',
-                              month: 'short',
-                            })}
-                          </p>
-                          <p className="text-sm text-gray-500">
-                            {new Date(booking.scheduled_at).toLocaleTimeString('id-ID', {
-                              hour: '2-digit',
-                              minute: '2-digit',
-                            })}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Calendar className="h-6 w-6 text-gray-400" />
-                    </div>
-                    <p className="text-gray-500 mb-4">Belum ada booking mendatang</p>
-                    <Link href="/services">
-                      <Button className="bg-emerald-600 hover:bg-emerald-700">
-                        Buat Booking Baru
-                      </Button>
-                    </Link>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Stats */}
-          <div className="space-y-4">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-500">Total Sesi</p>
-                    <p className="text-3xl font-bold text-gray-900">{completedCount}</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-emerald-100">
-                    <Activity className="h-6 w-6 text-emerald-600" />
-                  </div>
+                <div className="p-2 rounded-xl bg-emerald-100">
+                  <Activity className="h-4 w-4 text-emerald-600" />
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
 
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-500">Booking Aktif</p>
-                    <p className="text-3xl font-bold text-gray-900">{upcomingBookings.length}</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-blue-100">
-                    <Clock className="h-6 w-6 text-blue-600" />
-                  </div>
+          <Card>
+            <CardContent className="p-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-gray-500">Aktif</p>
+                  <p className="text-xl font-bold text-gray-900 mt-0.5">{upcomingBookings.length}</p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Tips */}
-            <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-2">Tips Pemulihan</h3>
-                <p className="text-sm text-emerald-100 mb-4">
-                  Lakukan peregangan ringan setiap pagi untuk menjaga fleksibilitas tubuh.
-                </p>
-                <Link href="/blog/tips">
-                  <Button variant="secondary" size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0">
-                    Baca Selengkapnya
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
+                <div className="p-2 rounded-xl bg-blue-100">
+                  <Clock className="h-4 w-4 text-blue-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
+
+        {/* Upcoming Bookings */}
+        <Card>
+          <CardHeader className="px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-sm font-semibold">Booking Mendatang</CardTitle>
+                <CardDescription className="text-xs">Sesi yang dijadwalkan</CardDescription>
+              </div>
+              <Link href="/dashboard/bookings">
+                <Button variant="ghost" size="sm" className="text-emerald-600 h-7 text-xs px-2">
+                  Semua <ArrowRight className="ml-1 h-3 w-3" />
+                </Button>
+              </Link>
+            </div>
+          </CardHeader>
+          <CardContent className="px-4 pb-4">
+            {upcomingBookings.length > 0 ? (
+              <div className="space-y-2">
+                {upcomingBookings.map((booking) => (
+                  <div
+                    key={booking.id}
+                    className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors active:scale-[0.98]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-1.5 rounded-lg bg-emerald-100">
+                        <Activity className="h-4 w-4 text-emerald-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">
+                          {booking.service?.name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {booking.therapist?.user?.name}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs font-medium text-gray-900">
+                        {new Date(booking.scheduled_at).toLocaleDateString('id-ID', {
+                          day: 'numeric',
+                          month: 'short',
+                        })}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {new Date(booking.scheduled_at).toLocaleTimeString('id-ID', {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-6">
+                <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                  <Calendar className="h-5 w-5 text-gray-400" />
+                </div>
+                <p className="text-xs text-gray-500 mb-3">Belum ada booking</p>
+                <Link href="/services">
+                  <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 h-8 text-xs active:scale-[0.98]">
+                    Buat Booking
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Tips */}
+        <Card className="mt-3 bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
+          <CardContent className="p-4">
+            <h3 className="text-sm font-semibold mb-1">Tips Pemulihan</h3>
+            <p className="text-xs text-emerald-100 mb-3">
+              Lakukan peregangan ringan setiap pagi untuk menjaga fleksibilitas tubuh.
+            </p>
+            <Link href="/blog/tips">
+              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 h-7 text-xs active:scale-[0.98]">
+                Baca Selengkapnya
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )

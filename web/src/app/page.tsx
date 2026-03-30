@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/footer'
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-gray-50 max-w-md mx-auto relative shadow-2xl">
+    <div className="flex flex-col h-screen overflow-hidden bg-gray-50 w-full relative">
       <Header />
       
       <main className="flex-1 pb-20 overflow-y-auto w-full">

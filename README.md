@@ -1,28 +1,34 @@
-# Halo Bugar
+Halo Bugar adalah platform mobile-first yang menghubungkan pengguna dengan fisioterapis profesional untuk layanan **Home Recovery** langsung ke rumah.
 
-Platform kesehatan digital yang menghubungkan pasien dengan terapis profesional untuk konsultasi dan layanan terapi online.
+## Fokus Produk
+- Home Recovery
+- Fisioterapi ke rumah
+- Recovery pasca olahraga
+- Pain relief & mobility
+- Injury support
 
-## Deskripsi
+## Target User
+- Pecinta olahraga
+- Pekerja aktif
+- Pengguna dengan keluhan nyeri ringan
+- Keluarga dengan kebutuhan terapi di rumah
 
-Halo Bugar adalah platform kesehatan digital untuk memudahkan akses layanan terapi dan konsultasi kesehatan secara online.
+## Struktur Repository
 
-## Fitur
-
-- Booking konsultasi dengan terapis
-- Video call / chat konsultasi
-- Manajemen jadwal terapis
-- Admin dashboard
-
-## Struktur Proyek
-
-```
 halobugar/
-├── docs/               # Dokumentasi
-├── app/                # Aplikasi pasien
-├── admin/              # Panel admin
-└── therapist-portal/   # Portal terapis
-```
+├── README.md
+├── CHANGELOG.md
+├── docs/
+│ ├── prd/
+│ ├── ux/
+│ └── tech/
+├── app/
+├── admin/
+└── therapist-portal/
+
+
+## Positioning
+Platform home recovery untuk hidup aktif dan sehat tanpa harus ke klinik.
 
 ## Status
-
-Project dalam tahap perencanaan dan dokumentasi.
+Initial documentation & MVP planning

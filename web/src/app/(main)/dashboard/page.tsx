@@ -42,7 +42,7 @@ export default async function DashboardPage() {
 
   // Get active in-progress booking
   const activeBooking = bookings?.find(b => 
-    ['on_the_way', 'in_progress', 'confirmed'].includes(b.status) &&
+    ['on_the_way', 'in_progress', 'accepted'].includes(b.status) &&
     new Date(b.scheduled_at).toDateString() === new Date().toDateString()
   )
 
@@ -70,7 +70,7 @@ export default async function DashboardPage() {
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
                     <span className="text-xs font-medium text-emerald-100">
-                      {activeBooking.status === 'confirmed' && 'Dikonfirmasi'}
+                      {activeBooking.status === 'accepted' && 'Dikonfirmasi'}
                       {activeBooking.status === 'on_the_way' && 'Terapis dalam perjalanan'}
                       {activeBooking.status === 'in_progress' && 'Sedang berlangsung'}
                     </span>

@@ -30,7 +30,7 @@ const statusConfig: Record<string, { label: string, color: string, bgColor: stri
     bgColor: 'bg-amber-50 border-amber-200',
     icon: Clock
   },
-  confirmed: {
+  accepted: {
     label: 'Dikonfirmasi',
     color: 'text-blue-700',
     bgColor: 'bg-blue-50 border-blue-200',
@@ -81,7 +81,7 @@ export default async function BookingDetailPage({ params }: PageProps) {
         id,
         user:users(name, phone)
       ),
-      address:addresses(label, full_address, district, city),
+      address:addresses(label, full_address, notes),
       review:reviews(rating, comment)
     `)
     .eq('id', id)
@@ -121,9 +121,9 @@ export default async function BookingDetailPage({ params }: PageProps) {
     }).format(price)
   }
 
-  const canCancel = ['pending', 'confirmed'].includes(booking.status)
+  const canCancel = ['pending', 'accepted'].includes(booking.status)
   const canReview = booking.status === 'completed' && !booking.review
-  const isActive = ['pending', 'confirmed', 'on_the_way', 'in_progress'].includes(booking.status)
+  const isActive = ['pending', 'accepted', 'on_the_way', 'in_progress'].includes(booking.status)
 
   return (
     <div className="min-h-screen bg-gray-50 pb-24">
@@ -250,9 +250,11 @@ export default async function BookingDetailPage({ params }: PageProps) {
                 <p className="text-xs text-gray-500">
                   {booking.address.full_address}
                 </p>
-                <p className="text-xs text-gray-400">
-                  {booking.address.district}, {booking.address.city}
-                </p>
+                {booking.address.notes && (
+                  <p className="text-xs text-gray-400">
+                    {booking.address.notes}
+                  </p>
+                )}
               </div>
             </div>
           </CardContent>

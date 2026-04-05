@@ -3,11 +3,11 @@ import { Search, Activity, Heart, Zap, Stethoscope, Star, ArrowRight } from 'luc
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 
-// Placeholder featured therapists data
+// Featured therapists from seed data
 const featuredTherapists = [
-  { id: '1', name: 'Siti Rahmawati', specialty: 'Deep Tissue', rating: 4.9, reviews: 124, image: null },
-  { id: '2', name: 'Ahmad Yusuf', specialty: 'Sports Recovery', rating: 4.8, reviews: 98, image: null },
-  { id: '3', name: 'Dewi Kartika', specialty: 'Relaxation', rating: 4.9, reviews: 156, image: null },
+  { id: '33333333-3333-3333-3333-333333333331', name: 'Siti Rahmawati, S.Ft', specialty: 'Deep Tissue', rating: 4.9, reviews: 156 },
+  { id: '33333333-3333-3333-3333-333333333332', name: 'Ahmad Yusuf, S.Ft', specialty: 'Sports Massage', rating: 4.8, reviews: 124 },
+  { id: '33333333-3333-3333-3333-333333333333', name: 'Dewi Kartika, S.Ft', specialty: 'Relaxation', rating: 4.9, reviews: 198 },
 ]
 
 export default function Home() {

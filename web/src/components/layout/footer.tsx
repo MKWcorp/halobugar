@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, LayoutGrid, CalendarDays, User } from 'lucide-react'
+import { Home, LayoutGrid, CalendarDays, User, Stethoscope } from 'lucide-react'
 
 export function Footer() {
   const pathname = usePathname()
@@ -10,6 +10,7 @@ export function Footer() {
   const tabs = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Layanan', href: '/services', icon: LayoutGrid },
+    { name: 'Terapis', href: '/therapists', icon: Stethoscope },
     { name: 'Jadwal', href: '/dashboard', icon: CalendarDays },
     { name: 'Profil', href: '/profile', icon: User },
   ]

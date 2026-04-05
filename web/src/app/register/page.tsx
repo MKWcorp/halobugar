@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Eye, EyeOff, Loader2, Check } from 'lucide-react'
+import { Eye, EyeOff, Loader2, Check, Mail, AlertCircle } from 'lucide-react'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -83,23 +83,46 @@ export default function RegisterPage() {
   if (success) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50 p-4">
-        <Card className="w-full text-center">
-          <CardHeader>
-            <div className="mx-auto w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
-              <Check className="h-8 w-8 text-emerald-600" />
+        <Card className="w-full max-w-md text-center">
+          <CardHeader className="pb-4">
+            <div className="mx-auto w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+              <Mail className="h-10 w-10 text-emerald-600" />
             </div>
-            <CardTitle className="text-2xl">Pendaftaran Berhasil!</CardTitle>
-            <CardDescription>
-              Kami telah mengirim email verifikasi ke <strong>{email}</strong>. 
-              Silakan cek inbox Anda untuk mengaktifkan akun.
+            <CardTitle className="text-2xl">Cek Email Anda! 📬</CardTitle>
+            <CardDescription className="text-base mt-2">
+              Kami telah mengirim email konfirmasi ke:
             </CardDescription>
+            <p className="font-semibold text-emerald-600 mt-1">{email}</p>
           </CardHeader>
-          <CardFooter className="flex flex-col space-y-4">
+          <CardContent className="pt-0">
+            <div className="bg-emerald-50 rounded-lg p-4 text-left space-y-2">
+              <p className="text-sm text-gray-600">
+                <span className="font-medium">Langkah selanjutnya:</span>
+              </p>
+              <ol className="text-sm text-gray-600 list-decimal list-inside space-y-1">
+                <li>Buka inbox email Anda</li>
+                <li>Cari email dari <strong>Halo Bugar</strong></li>
+                <li>Klik tombol <strong>&quot;Konfirmasi Email Saya&quot;</strong></li>
+                <li>Kembali ke halaman login</li>
+              </ol>
+            </div>
+            <div className="flex items-start gap-2 mt-4 p-3 bg-amber-50 rounded-lg">
+              <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-amber-700 text-left">
+                Tidak menerima email? Cek folder <strong>Spam</strong> atau <strong>Promosi</strong>. 
+                Link konfirmasi berlaku selama 24 jam.
+              </p>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col space-y-3">
             <Link href="/login" className="w-full">
               <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                 Ke Halaman Login
               </Button>
             </Link>
+            <p className="text-xs text-gray-500">
+              Sudah konfirmasi? Silakan login untuk memulai.
+            </p>
           </CardFooter>
         </Card>
       </div>

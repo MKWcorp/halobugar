@@ -20,10 +20,10 @@
 |----|---------|-------------|----------|--------|
 | U-001 | Splash Screen | App loading screen dengan branding | P0 | 🔲 Backlog |
 | U-002 | Onboarding Screens | 3 screen intro app | P0 | 🔲 Backlog |
-| U-003 | Register Email | Registrasi dengan email | P0 | 🔲 Backlog |
+| U-003 | Register Email | Registrasi dengan email | P0 | ✅ Done |
 | U-004 | Register Phone | Registrasi dengan nomor HP | P0 | 🔲 Backlog |
 | U-005 | OTP Verification | Verifikasi via SMS/WhatsApp | P0 | 🔲 Backlog |
-| U-006 | Login | Login dengan email/phone + password | P0 | 🔲 Backlog |
+| U-006 | Login | Login dengan email/phone + password | P0 | ✅ Done |
 | U-007 | Forgot Password | Reset password flow | P1 | 🔲 Backlog |
 | U-008 | Social Login | Login via Google | P2 | 🔲 Backlog |
 | U-009 | Biometric Login | Fingerprint/Face ID | P2 | 🔲 Backlog |
@@ -32,30 +32,30 @@
 
 | ID | Feature | Description | Priority | Status |
 |----|---------|-------------|----------|--------|
-| U-010 | Home Dashboard | Main screen dengan kategori, promo, therapist | P0 | 🔲 Backlog |
-| U-011 | Service Categories | List 4 kategori layanan utama | P0 | 🔲 Backlog |
+| U-010 | Home Dashboard | Main screen dengan kategori, promo, therapist | P0 | ✅ Done |
+| U-011 | Service Categories | List 4 kategori layanan utama | P0 | ✅ Done |
 | U-012 | Banner Promo | Carousel banner promosi | P1 | 🔲 Backlog |
 | U-013 | Featured Therapists | List therapist unggulan | P0 | 🔲 Backlog |
 | U-014 | Active Booking Card | Tampilkan booking yang sedang aktif | P0 | 🔲 Backlog |
-| U-015 | Search Therapist | Search by nama/spesialisasi | P1 | 🔲 Backlog |
+| U-015 | Search Therapist | Search by nama/spesialisasi | P1 | ✅ Done |
 | U-016 | Filter Therapist | Filter by rating, jarak, harga | P1 | 🔲 Backlog |
 
 ### Service & Booking
 
 | ID | Feature | Description | Priority | Status |
 |----|---------|-------------|----------|--------|
-| U-020 | Service List | List semua layanan per kategori | P0 | 🔲 Backlog |
+| U-020 | Service List | List semua layanan per kategori | P0 | ✅ Done |
 | U-021 | Service Detail | Detail layanan + CTA booking | P0 | 🔲 Backlog |
-| U-022 | Therapist List | List therapist available | P0 | 🔲 Backlog |
+| U-022 | Therapist List | List therapist available | P0 | ✅ Done |
 | U-023 | Therapist Detail | Profil lengkap therapist | P0 | 🔲 Backlog |
 | U-024 | Auto-Assign | System pilihkan therapist | P0 | 🔲 Backlog |
-| U-025 | Date Picker | Pilih tanggal booking | P0 | 🔲 Backlog |
-| U-026 | Time Slot Picker | Pilih jam booking | P0 | 🔲 Backlog |
-| U-027 | Address Input | Input alamat manual | P0 | 🔲 Backlog |
+| U-025 | Date Picker | Pilih tanggal booking | P0 | ✅ Done |
+| U-026 | Time Slot Picker | Pilih jam booking | P0 | ✅ Done |
+| U-027 | Address Input | Input alamat manual | P0 | ✅ Done |
 | U-028 | Address Maps | Pilih alamat via maps | P1 | 🔲 Backlog |
 | U-029 | Saved Addresses | Kelola alamat tersimpan | P0 | 🔲 Backlog |
-| U-030 | Complaint Notes | Input catatan keluhan | P0 | 🔲 Backlog |
-| U-031 | Booking Summary | Ringkasan sebelum bayar | P0 | 🔲 Backlog |
+| U-030 | Complaint Notes | Input catatan keluhan | P0 | ✅ Done |
+| U-031 | Booking Summary | Ringkasan sebelum bayar | P0 | ✅ Done |
 | U-032 | Payment Selection | Pilih metode pembayaran | P0 | 🔲 Backlog |
 | U-033 | Payment Gateway | Integrasi Midtrans/Xendit | P0 | 🔲 Backlog |
 | U-034 | Booking Confirmation | Konfirmasi booking sukses | P0 | 🔲 Backlog |
@@ -64,10 +64,10 @@
 
 | ID | Feature | Description | Priority | Status |
 |----|---------|-------------|----------|--------|
-| U-040 | Active Orders | List booking yang aktif | P0 | 🔲 Backlog |
+| U-040 | Active Orders | List booking yang aktif | P0 | ✅ Done |
 | U-041 | Order Tracking | Real-time status tracking | P0 | 🔲 Backlog |
 | U-042 | Order Detail | Detail lengkap booking | P0 | 🔲 Backlog |
-| U-043 | Order History | Riwayat booking sebelumnya | P0 | 🔲 Backlog |
+| U-043 | Order History | Riwayat booking sebelumnya | P0 | ✅ Done |
 | U-044 | Reorder | Pesan lagi dari riwayat | P1 | 🔲 Backlog |
 | U-045 | Cancel Order | Batalkan booking | P0 | 🔲 Backlog |
 | U-046 | Reschedule | Ubah jadwal booking | P1 | 🔲 Backlog |
@@ -93,14 +93,14 @@
 
 | ID | Feature | Description | Priority | Status |
 |----|---------|-------------|----------|--------|
-| U-070 | User Profile | Edit data profil | P0 | 🔲 Backlog |
+| U-070 | User Profile | Edit data profil | P0 | ✅ Done |
 | U-071 | Manage Addresses | CRUD alamat | P0 | 🔲 Backlog |
 | U-072 | Payment Methods | Kelola metode pembayaran | P1 | 🔲 Backlog |
 | U-073 | Notifications | List notifikasi | P0 | 🔲 Backlog |
 | U-074 | Notification Settings | Atur preferensi notif | P1 | 🔲 Backlog |
 | U-075 | Help Center | FAQ & bantuan | P1 | 🔲 Backlog |
 | U-076 | Contact Support | Hubungi CS | P1 | 🔲 Backlog |
-| U-077 | Logout | Keluar akun | P0 | 🔲 Backlog |
+| U-077 | Logout | Keluar akun | P0 | ✅ Done |
 
 ---
 

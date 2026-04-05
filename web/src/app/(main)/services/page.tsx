@@ -68,6 +68,31 @@ export default async function ServicesPage({
   searchParams: Promise<{ category?: string }>
 }) {
   const params = await searchParams
+  
+  // Check if environment variables are configured
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    console.error('Supabase environment variables are not configured!')
+    console.error('Please create a .env.local file with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY')
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-md p-6 max-w-md">
+          <h2 className="text-xl font-bold text-red-600 mb-2">Configuration Error</h2>
+          <p className="text-gray-700 mb-4">
+            Supabase environment variables are not configured.
+          </p>
+          <div className="bg-gray-100 p-3 rounded text-sm">
+            <p className="font-semibold mb-1">To fix this:</p>
+            <ol className="list-decimal list-inside space-y-1 text-gray-600">
+              <li>Copy .env.local.example to .env.local</li>
+              <li>Add your Supabase project URL and anon key</li>
+              <li>Restart the development server</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const supabase = await createClient()
   
   let query = supabase
@@ -85,6 +110,39 @@ export default async function ServicesPage({
 
   if (error) {
     console.error('Error fetching services:', error)
+    console.error('Error details:', JSON.stringify(error, null, 2))
+    console.error('Error code:', error.code)
+    console.error('Error message:', error.message)
+    console.error('Error hint:', error.hint)
+    
+    // Show user-friendly error page
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-md p-6 max-w-md">
+          <h2 className="text-xl font-bold text-red-600 mb-2">Database Error</h2>
+          <p className="text-gray-700 mb-4">
+            {error.message || 'Unable to fetch services from the database.'}
+          </p>
+          {error.hint && (
+            <p className="text-sm text-gray-600 mb-4 bg-yellow-50 p-3 rounded border border-yellow-200">
+              <strong>Hint:</strong> {error.hint}
+            </p>
+          )}
+          <div className="bg-gray-100 p-3 rounded text-sm">
+            <p className="font-semibold mb-2">Common solutions:</p>
+            <ol className="list-decimal list-inside space-y-1 text-gray-600">
+              <li>Make sure your database tables are created</li>
+              <li>Run the migrations in <code className="bg-gray-200 px-1 rounded">supabase/migrations/</code></li>
+              <li>Check RLS policies in Supabase dashboard</li>
+              <li>Verify your API keys have the correct permissions</li>
+            </ol>
+          </div>
+          {error.code && (
+            <p className="text-xs text-gray-500 mt-4">Error Code: {error.code}</p>
+          )}
+        </div>
+      </div>
+    )
   }
 
   // Group services by category
@@ -188,7 +246,16 @@ export default async function ServicesPage({
 
         {(!services || services.length === 0) && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-sm">Belum ada layanan tersedia</p>
+            {error ? (
+              <div className="space-y-2">
+                <p className="text-red-600 text-sm font-semibold">Gagal memuat layanan</p>
+                <p className="text-gray-500 text-xs">
+                  Terjadi kesalahan saat mengambil data
+                </p>
+              </div>
+            ) : (
+              <p className="text-gray-500 text-sm">Belum ada layanan tersedia</p>
+            )}
           </div>
         )}
       </div>

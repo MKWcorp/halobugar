@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Calendar, Clock, Activity, User, ArrowRight, Plus } from 'lucide-react'
+import { Calendar, Clock, Activity, User, ArrowRight, Plus, MapPin, Phone } from 'lucide-react'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -40,6 +40,12 @@ export default async function DashboardPage() {
     !['cancelled', 'completed'].includes(b.status)
   ) || []
 
+  // Get active in-progress booking
+  const activeBooking = bookings?.find(b => 
+    ['on_the_way', 'in_progress', 'confirmed'].includes(b.status) &&
+    new Date(b.scheduled_at).toDateString() === new Date().toDateString()
+  )
+
   const completedCount = bookings?.filter(b => b.status === 'completed').length || 0
 
   return (
@@ -55,6 +61,42 @@ export default async function DashboardPage() {
       </div>
 
       <div className="px-4 py-4">
+        {/* Active Booking Card */}
+        {activeBooking && (
+          <Link href={`/dashboard/bookings/${activeBooking.id}`}>
+            <Card className="mb-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-0 shadow-lg overflow-hidden">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                    <span className="text-xs font-medium text-emerald-100">
+                      {activeBooking.status === 'confirmed' && 'Dikonfirmasi'}
+                      {activeBooking.status === 'on_the_way' && 'Terapis dalam perjalanan'}
+                      {activeBooking.status === 'in_progress' && 'Sedang berlangsung'}
+                    </span>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-emerald-100" />
+                </div>
+                
+                <h3 className="font-semibold mb-1">{activeBooking.service?.name}</h3>
+                <p className="text-sm text-emerald-100 mb-3">
+                  Terapis: {activeBooking.therapist?.user?.name}
+                </p>
+                
+                <div className="flex items-center gap-4 text-sm">
+                  <div className="flex items-center gap-1.5 text-emerald-100">
+                    <Clock className="h-3.5 w-3.5" />
+                    {new Date(activeBooking.scheduled_at).toLocaleTimeString('id-ID', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        )}
+
         {/* Quick Actions */}
         <div className="space-y-2 mb-4">
           <Link href="/services">

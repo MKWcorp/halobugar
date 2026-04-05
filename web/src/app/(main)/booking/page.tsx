@@ -203,7 +203,7 @@ function BookingContent() {
 
       // Create booking
       const scheduledAt = new Date(`${selectedDate}T${selectedTime}:00`)
-      const { error: bookingError } = await supabase
+      const { data: bookingData, error: bookingError } = await supabase
         .from('bookings')
         .insert({
           user_id: user.id,
@@ -215,10 +215,12 @@ function BookingContent() {
           total_price: selectedService.base_price,
           status: 'pending',
         })
+        .select('id')
+        .single()
 
       if (bookingError) throw bookingError
 
-      router.push('/dashboard?booking=success')
+      router.push(`/booking/confirmation?id=${bookingData.id}`)
     } catch (err) {
       console.error('Booking error:', err)
       setError('Gagal membuat booking. Silakan coba lagi.')

@@ -271,31 +271,31 @@ function ServiceCard({ service }: { service: {
   base_price: number
 }}) {
   return (
-    <Card className="hover:shadow-md transition-shadow active:scale-[0.98]">
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1 pr-2">
-            <h3 className="font-semibold text-gray-900 text-sm mb-1">{service.name}</h3>
-            <p className="text-xs text-gray-500 line-clamp-2">{service.description}</p>
-          </div>
-          <div className="text-right flex-shrink-0">
-            <div className="text-base font-bold text-emerald-600">
-              {formatPrice(service.base_price)}
+    <Link href={`/services/${service.id}`}>
+      <Card className="hover:shadow-md transition-shadow active:scale-[0.98]">
+        <CardContent className="p-4">
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex-1 pr-2">
+              <h3 className="font-semibold text-gray-900 text-sm mb-1">{service.name}</h3>
+              <p className="text-xs text-gray-500 line-clamp-2">{service.description}</p>
+            </div>
+            <div className="text-right flex-shrink-0">
+              <div className="text-base font-bold text-emerald-600">
+                {formatPrice(service.base_price)}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex items-center justify-between mt-3">
-          <div className="flex items-center text-gray-500 text-xs">
-            <Clock className="h-3 w-3 mr-1" />
-            {service.duration_minutes} menit
-          </div>
-          <Link href={`/booking?service=${service.id}`}>
+          <div className="flex items-center justify-between mt-3">
+            <div className="flex items-center text-gray-500 text-xs">
+              <Clock className="h-3 w-3 mr-1" />
+              {service.duration_minutes} menit
+            </div>
             <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8">
-              Pesan
+              Lihat Detail
             </Button>
-          </Link>
-        </div>
-      </CardContent>
-    </Card>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
   )
 }

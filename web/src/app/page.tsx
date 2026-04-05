@@ -1,7 +1,14 @@
 import Link from 'next/link'
-import { Search, Activity, Heart, Zap, Stethoscope } from 'lucide-react'
+import { Search, Activity, Heart, Zap, Stethoscope, Star, ArrowRight } from 'lucide-react'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+
+// Placeholder featured therapists data
+const featuredTherapists = [
+  { id: '1', name: 'Siti Rahmawati', specialty: 'Deep Tissue', rating: 4.9, reviews: 124, image: null },
+  { id: '2', name: 'Ahmad Yusuf', specialty: 'Sports Recovery', rating: 4.8, reviews: 98, image: null },
+  { id: '3', name: 'Dewi Kartika', specialty: 'Relaxation', rating: 4.9, reviews: 156, image: null },
+]
 
 export default function Home() {
   return (
@@ -64,6 +71,50 @@ export default function Home() {
               </div>
               <span className="text-sm font-semibold text-gray-800">Performa Atlet</span>
             </Link>
+          </div>
+        </section>
+
+        {/* Featured Therapists */}
+        <section className="px-4 py-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">Terapis Pilihan</h2>
+            <Link href="/therapists" className="text-sm font-medium text-emerald-600 hover:text-emerald-700 flex items-center gap-1">
+              Lihat Semua
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          
+          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+            {featuredTherapists.map((therapist) => (
+              <Link 
+                key={therapist.id} 
+                href={`/therapists/${therapist.id}`}
+                className="flex-shrink-0 w-36"
+              >
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow">
+                  <div className="w-full aspect-square bg-emerald-100 rounded-xl mb-2 flex items-center justify-center">
+                    <span className="text-3xl font-bold text-emerald-600">
+                      {therapist.name.charAt(0)}
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-sm text-gray-900 truncate">
+                    {therapist.name}
+                  </h3>
+                  <p className="text-xs text-gray-500 truncate mb-1">
+                    {therapist.specialty}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                    <span className="text-xs font-medium text-gray-700">
+                      {therapist.rating}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      ({therapist.reviews})
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 

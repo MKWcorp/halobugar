@@ -35,8 +35,8 @@
 | U-010 | Home Dashboard | Main screen dengan kategori, promo, therapist | P0 | ✅ Done |
 | U-011 | Service Categories | List 4 kategori layanan utama | P0 | ✅ Done |
 | U-012 | Banner Promo | Carousel banner promosi | P1 | 🔲 Backlog |
-| U-013 | Featured Therapists | List therapist unggulan | P0 | 🔲 Backlog |
-| U-014 | Active Booking Card | Tampilkan booking yang sedang aktif | P0 | 🔲 Backlog |
+| U-013 | Featured Therapists | List therapist unggulan | P0 | ✅ Done |
+| U-014 | Active Booking Card | Tampilkan booking yang sedang aktif | P0 | ✅ Done |
 | U-015 | Search Therapist | Search by nama/spesialisasi | P1 | ✅ Done |
 | U-016 | Filter Therapist | Filter by rating, jarak, harga | P1 | 🔲 Backlog |
 
@@ -45,9 +45,9 @@
 | ID | Feature | Description | Priority | Status |
 |----|---------|-------------|----------|--------|
 | U-020 | Service List | List semua layanan per kategori | P0 | ✅ Done |
-| U-021 | Service Detail | Detail layanan + CTA booking | P0 | 🔲 Backlog |
+| U-021 | Service Detail | Detail layanan + CTA booking | P0 | ✅ Done |
 | U-022 | Therapist List | List therapist available | P0 | ✅ Done |
-| U-023 | Therapist Detail | Profil lengkap therapist | P0 | 🔲 Backlog |
+| U-023 | Therapist Detail | Profil lengkap therapist | P0 | ✅ Done |
 | U-024 | Auto-Assign | System pilihkan therapist | P0 | 🔲 Backlog |
 | U-025 | Date Picker | Pilih tanggal booking | P0 | ✅ Done |
 | U-026 | Time Slot Picker | Pilih jam booking | P0 | ✅ Done |
@@ -58,7 +58,7 @@
 | U-031 | Booking Summary | Ringkasan sebelum bayar | P0 | ✅ Done |
 | U-032 | Payment Selection | Pilih metode pembayaran | P0 | 🔲 Backlog |
 | U-033 | Payment Gateway | Integrasi Midtrans/Xendit | P0 | 🔲 Backlog |
-| U-034 | Booking Confirmation | Konfirmasi booking sukses | P0 | 🔲 Backlog |
+| U-034 | Booking Confirmation | Konfirmasi booking sukses | P0 | ✅ Done |
 
 ### Order Management
 
@@ -66,7 +66,7 @@
 |----|---------|-------------|----------|--------|
 | U-040 | Active Orders | List booking yang aktif | P0 | ✅ Done |
 | U-041 | Order Tracking | Real-time status tracking | P0 | 🔲 Backlog |
-| U-042 | Order Detail | Detail lengkap booking | P0 | 🔲 Backlog |
+| U-042 | Order Detail | Detail lengkap booking | P0 | ✅ Done |
 | U-043 | Order History | Riwayat booking sebelumnya | P0 | ✅ Done |
 | U-044 | Reorder | Pesan lagi dari riwayat | P1 | 🔲 Backlog |
 | U-045 | Cancel Order | Batalkan booking | P0 | 🔲 Backlog |
@@ -76,9 +76,9 @@
 
 | ID | Feature | Description | Priority | Status |
 |----|---------|-------------|----------|--------|
-| U-050 | Rate Therapist | Beri rating bintang | P0 | 🔲 Backlog |
-| U-051 | Write Review | Tulis ulasan | P0 | 🔲 Backlog |
-| U-052 | View Reviews | Lihat review therapist | P0 | 🔲 Backlog |
+| U-050 | Rate Therapist | Beri rating bintang | P0 | ✅ Done |
+| U-051 | Write Review | Tulis ulasan | P0 | ✅ Done |
+| U-052 | View Reviews | Lihat review therapist | P0 | ✅ Done |
 
 ### Treatment & Progress
 
